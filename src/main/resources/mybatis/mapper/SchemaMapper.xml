@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdai.fe.mapper.SchemaMapper">
+    
+    <select id="getIdByName" resultType="Integer">
+        select id from `schema` where `name`=#{name}
+    </select>
+
+    <insert id="schemaSave">
+        insert into `schema` (`name`,`device_type`,`create_by`)
+        values (#{name},#{device_type},#{create_by})
+    </insert>
+
+    <update id="schemaUpdate">
+        update `schema`
+        set  `name`=#{name},device_type=#{device_type}
+        where id=#{id};
+    </update>
+
+    <select id="getSchema" resultType="com.bdai.fe.entity.Schema">
+        select * from `schema`
+    </select>
+
+    <select id="getSchemaById" resultType="com.bdai.fe.entity.Schema" parameterType="java.lang.Integer">
+        select * from `schema` where id =#{id }
+    </select>
+
+    <delete id="deleSchemaById" parameterType="java.lang.Integer">
+        delete from `schema` where id = #{id }
+    </delete>
+
+    <select id="getDeviceTypeBySchemaId" resultType="java.lang.Integer">
+        select device_type from `schema`
+        where id = #{schema_id}
+    </select>
+
+</mapper>

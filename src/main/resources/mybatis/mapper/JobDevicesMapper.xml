@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdai.fe.mapper.JobDevicesMapper">
+    <select id="getDeviceIdsByJobID" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select device_id from job_devices
+        where job_id =#{jobId }
+    </select>
+    <select id="getField_ByDeviceTypeAndFieldName" resultType="java.lang.Integer">
+        select id from device_type_prop
+        where `tid` = #{deviceType} and `prop_name` = #{fieldName}
+    </select>
+    
+    <insert id="jobDeviceSave" parameterType="com.bdai.fe.entity.JobDevices">
+        insert ignore into `job_devices` (job_id ,device_id)
+        values (#{job_id }, #{device_id })
+    </insert>
+</mapper>

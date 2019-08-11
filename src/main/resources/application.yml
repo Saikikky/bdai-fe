@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    username: root
+    password: bdaipass
+    url: jdbc:mysql://db:3306/whxlbdai?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+logging:
+  level:
+    com:
+      bdai:
+        fe: debug

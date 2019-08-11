@@ -1,0 +1,4 @@
+hdfs dfs -mkdir /user/hive/$1
+hive -e 'desc etl.'$1 > /py_code/1.txt
+echo `(cat /py_code/1.txt)`|sed 's/ /\n/g'|sed -n '1~2p'>2.txt
+echo `(cat /py_code/2.txt)`|sed 's/ /,/g'> temp_field

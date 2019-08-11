@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bdai.fe.mapper.FlowMapper">
+    <!--<resultMap id="BaseResultMap" type="com.bdai.fe.entity.Flow" >-->
+        <!--<result column="params" property="params" typeHandler="com.bdai.fe.handler.JSONTypeHandler" />-->
+    <!--</resultMap>-->
+
+    <insert id="flowSave">
+        insert ignore into flow (sid,`index`,method,params)
+        values (#{sid},#{index},#{method},#{params})
+    </insert>
+
+    <select id="getFlowById" resultType="com.bdai.fe.entity.Flow">
+        select * from flow where id=#{id}
+    </select>
+
+    <update id="flowUpdate">
+        update flow
+            set method=#{method},params=#{params}
+            where id=#{id}
+    </update>
+
+    <select id="getFlow" resultType="com.bdai.fe.entity.Flow">
+        select * from flow
+    </select>
+
+    <select id="getFlowBySid" resultType="com.bdai.fe.entity.Flow" parameterType="java.lang.Integer">
+        select * from `flow` where sid = #{sid}
+    </select>
+
+    <select id="getParams" resultType="java.lang.Byte" parameterType="java.lang.Integer">
+        select params from Flow
+        where sid=#{id}
+    </select>
+
+
+    <delete id="deleFlowById" parameterType="java.lang.Integer">
+        delete from flow where id = #{id }
+    </delete>
+
+
+</mapper>

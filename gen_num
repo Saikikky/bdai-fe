@@ -1,0 +1,11 @@
+hive -e 'ALTER TABLE etl.'$1' ADD COLUMNS(id int);'
+hive -e 'ALTER TABLE etl.'$2' ADD COLUMNS(id int);'
+rm -rf /py_code/000000_0
+hdfs dfs -get /user/hive/$1/000000_0
+hdfs dfs -get /user/hive/$2/$3
+awk '$0=$0","NR""' 000000_0 > temp_file 
+awk '$0=$0","NR""' $3 > temp_file2
+hdfs dfs -rm -r /user/hive/$1/000000_0  
+hdfs dfs -put -f /py_code/temp_file /user/hive/$1/
+hdfs dfs -rm -r /user/hive/$2/$3
+hdfs dfs -put -f /py_code/temp_file2 /user/hive/$2
